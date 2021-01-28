@@ -10,5 +10,7 @@ production:
     - npm install -g serverless
     - npm install --save-dev serverless-offline
   script:
+    - sls config credentials --profile serverless-user-gitlab --provider aws --key $AWS_SECRET_ACCESS_KEY --secret $AWS_SECRET_ACCESS_KEY
+    - export AWS_PROFILE="serverless-user-gitlab"
     - serverless deploy --stage production --verbose
   environment: production
