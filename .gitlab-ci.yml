@@ -10,5 +10,4 @@ production:
     - npm install -g serverless
     - npm install --save-dev serverless-offline
   script:
-    - serverless deploy --stage production --verbose
-  environment: production
+    - serverless deploy
