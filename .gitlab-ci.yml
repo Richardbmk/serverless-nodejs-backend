@@ -1,4 +1,4 @@
-image: node:15.5
+image: node:latest
 
 stages:
   - deploy
