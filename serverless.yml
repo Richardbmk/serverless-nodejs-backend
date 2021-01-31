@@ -4,6 +4,7 @@ frameworkVersion: '2'
 
 plugins:
   - serverless-offline
+  - serverless-domain-manager
 
 custom:
   allowedHeaders:
@@ -17,6 +18,15 @@ custom:
     - X-Amz-User-Agent
     - app_user_id
     - app_user_name
+  domain:
+    dev: dev-recipeapi.iotcloudsolutions.com
+    prod: recipeapi.iotcloudsolutions.com
+  customDomain:
+    domainName: ${self:custom.domain.${opt:stage}}
+    basePath: ''
+    stage: ${self:provider.stage}
+    certificateName: iotcloudsolutions.com
+    createRoute53Record: true
 
 provider:
   name: aws

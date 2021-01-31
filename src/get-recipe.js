@@ -25,6 +25,8 @@ exports.handler = async (event) => {
             Limit: 1
         };
 
+        console.log(event);
+
         let data = await dynamodb.query(params).promise();
         if (!_.isEmpty(data.Items)) {
             return {

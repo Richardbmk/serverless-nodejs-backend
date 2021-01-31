@@ -19,6 +19,8 @@ exports.handler = async (event) => {
         item.recipe_id = item.user_id + ':' + uuid.v4();
         item.timestamp = new Date().getTime();
 
+        // console.log(event);
+
         let data = await dynamodb.put({
             TableName: tableName,
             Item: item
