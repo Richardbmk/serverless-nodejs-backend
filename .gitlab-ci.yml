@@ -31,7 +31,6 @@ Test FrontEnd:
 Development:
   stage: Development Stage
   script:
-    - serverless create_domain --stage dev
     - serverless deploy --stage dev --verbone
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^(master|develop)$/'
@@ -39,7 +38,6 @@ Development:
 Production:
   stage: Production Stage
   script:
-    - serverless create_domain --stage prod
     - serverless deploy --stage prod --verbone
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
