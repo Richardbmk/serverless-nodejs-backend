@@ -1,0 +1,15 @@
+image: node:12
+
+stages:
+  - deploy
+
+production:
+  stage: deploy
+  before_script:
+    - npm config set prefix /usr/local
+    - npm install -g serverless
+    - npm install --save-dev serverless-offline
+  script:
+    - serverless deploy --stage prod --verbose
+    # - serverless create_domain
+  environment: development
