@@ -26,6 +26,7 @@ custom:
     basePath: ''
     stage: ${self:provider.stage}
     certificateName: iotcloudsolutions.com
+    certificateArn: arn:aws:acm:us-east-1:*:certificate/ffa6a02e-9246-4279-bad8-f519d6eb7e68
     createRoute53Record: true
 
 provider:
