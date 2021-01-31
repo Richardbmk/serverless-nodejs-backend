@@ -1,4 +1,4 @@
-service: recipe-api
+service: recipe-api-nodejs
 
 frameworkVersion: '2'
 
