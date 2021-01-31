@@ -17,7 +17,8 @@ Test api BackEnd:
     - echo "Test and Lint for BackEnd"
     - echo "Here goes all the api testing"
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|develop)$ || $CI_COMMIT_BRANCH =~ /^(master|develop)$/'
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|develop)$/ || $CI_COMMIT_BRANCH =~ /^(master|develop)$/'
+
 
 Test FrontEnd:
   stage: Test and Lint
@@ -25,7 +26,7 @@ Test FrontEnd:
     - echo "Test and Lint for FrontEnd"
     - echo "Here goes all the api testing"
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|develop)$ || $CI_COMMIT_BRANCH =~ /^(master|develop)$/'
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|develop)$/ || $CI_COMMIT_BRANCH =~ /^(master|develop)$/'
 
 Development:
   stage: Development Stage
