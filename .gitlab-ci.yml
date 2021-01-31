@@ -10,6 +10,6 @@ production:
     - npm install -g serverless
     - npm install --save-dev serverless-offline
   script:
-    - serverless deploy --stage development --verbose
+    - serverless deploy --stage prod --verbose
     # - serverless create_domain
   environment: development
