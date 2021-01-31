@@ -1,15 +1,63 @@
 image: node:12
 
 stages:
-  - deploy
+  - Test and Lint
+  - Development Stage
+  - Production Stage
+  - Remove
 
-production:
-  stage: deploy
-  before_script:
-    - npm config set prefix /usr/local
-    - npm install -g serverless
-    - npm install --save-dev serverless-offline
+before_script:
+  - npm config set prefix /usr/local
+  - npm install -g serverless
+  - npm install --save-dev serverless-offline
+
+Test api BackEnd:
+  stage: Test and Lint
   script:
-    - serverless deploy --stage prod --verbose
-    # - serverless create_domain
-  environment: development
+    - echo "Test and Lint for BackEnd"
+    - echo "Here goes all the api testing"
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|develop)$ || $CI_COMMIT_BRANCH =~ /^(master|develop)$/'
+
+Test FrontEnd:
+  stage: Test and Lint
+  script:
+    - echo "Test and Lint for FrontEnd"
+    - echo "Here goes all the api testing"
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|develop)$ || $CI_COMMIT_BRANCH =~ /^(master|develop)$/'
+
+Development:
+  stage: Development Stage
+  script:
+    - serverless create_domain --stage dev
+    - serverless deploy --stage dev --verbone
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^(master|develop)$/'
+
+Production:
+  stage: Production Stage
+  script:
+    - serverless create_domain --stage prod
+    - serverless deploy --stage prod --verbone
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: manual
+
+Remove Development:
+  stage: Remove
+  script:
+    - echo "Here we destroy the Development Stage"
+    - serverless remove --stage dev
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^(master|develop)$/'
+      when: manual
+
+Remove Production:
+  stage: Remove
+  script:
+    - echo "Here we destroy the Production Stage"
+    - serverless remove --stage prod
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: manual
